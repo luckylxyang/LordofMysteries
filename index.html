@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>诡秘之主 - 22条神之途径</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>诡秘之主</h1>
+                <h2>二十二条神之途径</h2>
+            </div>
+        </header>
+
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="搜索途径、序列或魔药配方...">
+            <i class="fas fa-search search-icon"></i>
+        </div>
+
+        <div class="tarot-container" id="pathsContainer">
+            <!-- 塔罗牌将通过JavaScript动态生成 -->
+        </div>
+
+        <div class="path-details" id="pathDetails">
+            <div class="close-btn" id="closeDetails">&times;</div>
+            <h3 id="detailTitle">途径详情</h3>
+            <div id="detailContent"></div>
+        </div>
+
+        <div class="overlay" id="overlay"></div>
+    </div>
+
+    <footer>
+        <p>© 2023 诡秘之主 - 神之途径展示</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

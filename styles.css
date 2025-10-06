@@ -1,0 +1,838 @@
+/* 全局样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Serif SC', 'Cinzel', serif;
+    background-color: #0d0d13;
+    color: #d4c9a8;
+    line-height: 1.6;
+    background-image: url('https://i.imgur.com/JYzDGUw.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-blend-mode: overlay;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 头部样式 */
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 40px 0;
+    position: relative;
+}
+
+.header-content {
+    position: relative;
+    z-index: 2;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 600px;
+    height: 100%;
+    background-image: url('https://i.imgur.com/8XZyuNs.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.2;
+    z-index: 1;
+}
+
+header h1 {
+    font-family: 'Cinzel', 'Noto Serif SC', serif;
+    font-size: 3.5rem;
+    margin-bottom: 10px;
+    letter-spacing: 3px;
+    color: #e2c87a;
+    text-shadow: 0 0 10px rgba(226, 200, 122, 0.5);
+}
+
+header h2 {
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: #b8a77a;
+    letter-spacing: 2px;
+}
+
+/* 搜索框样式 */
+.search-container {
+    position: relative;
+    max-width: 500px;
+    margin: 0 auto 40px;
+}
+
+#searchInput {
+    width: 100%;
+    padding: 15px 20px;
+    padding-right: 50px;
+    border: 1px solid #634e2c;
+    border-radius: 0;
+    font-size: 1rem;
+    background-color: rgba(13, 13, 19, 0.7);
+    color: #d4c9a8;
+    font-family: 'Noto Serif SC', serif;
+    box-shadow: 0 0 15px rgba(99, 78, 44, 0.3);
+    transition: all 0.3s ease;
+}
+
+#searchInput:focus {
+    outline: none;
+    border-color: #e2c87a;
+    box-shadow: 0 0 15px rgba(226, 200, 122, 0.5);
+}
+
+.search-icon {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #634e2c;
+}
+
+/* 塔罗牌容器 */
+.tarot-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+    perspective: 1000px;
+}
+
+/* 塔罗牌样式 */
+.tarot-card {
+    position: relative;
+    height: 350px;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: transform 0.8s ease;
+}
+
+.tarot-card:hover {
+    transform: rotateY(10deg) translateY(-10px);
+}
+
+.tarot-front, .tarot-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+}
+
+.tarot-front {
+    background: linear-gradient(135deg, #1a1a24, #0d0d13);
+    border: 1px solid #634e2c;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.tarot-back {
+    background-image: url('https://i.imgur.com/8XZyuNs.png');
+    background-size: cover;
+    background-position: center;
+    transform: rotateY(180deg);
+    border: 1px solid #634e2c;
+}
+
+.tarot-number {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    color: #e2c87a;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.tarot-title {
+    font-family: 'Cinzel', 'Noto Serif SC', serif;
+    font-size: 1.5rem;
+    color: #e2c87a;
+    text-align: center;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.tarot-symbol {
+    font-size: 3rem;
+    text-align: center;
+    margin: 20px 0;
+    color: #e2c87a;
+}
+
+.tarot-description {
+    font-size: 0.9rem;
+    color: #b8a77a;
+    text-align: center;
+    margin-top: auto;
+}
+
+/* 途径详情弹窗 */
+.path-details {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    background: #0d0d13;
+    width: 90%;
+    max-width: 800px;
+    max-height: 85vh;
+    border-radius: 0;
+    padding: 40px;
+    box-shadow: 0 0 50px rgba(226, 200, 122, 0.4);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+    overflow-y: auto;
+    border: 2px solid #634e2c;
+    background-image: url('https://i.imgur.com/8XZyuNs.png');
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay;
+    background-attachment: fixed;
+}
+
+.path-details::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(13, 13, 19, 0.7) 0%, rgba(13, 13, 19, 0.95) 70%);
+    z-index: -1;
+}
+
+.path-details.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 1.8rem;
+    color: #634e2c;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #634e2c;
+}
+
+.close-btn:hover {
+    color: #e2c87a;
+    border-color: #e2c87a;
+    box-shadow: 0 0 15px rgba(226, 200, 122, 0.5);
+    transform: rotate(90deg);
+}
+
+#detailTitle {
+    font-family: 'Cinzel', 'Noto Serif SC', serif;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #e2c87a;
+    text-align: center;
+    letter-spacing: 3px;
+    border-bottom: 1px solid #634e2c;
+    padding-bottom: 15px;
+    text-shadow: 0 0 15px rgba(226, 200, 122, 0.5);
+    position: relative;
+}
+
+#detailTitle::before,
+#detailTitle::after {
+    content: '✧';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #e2c87a;
+    font-size: 1.5rem;
+}
+
+#detailTitle::before {
+    left: 20px;
+}
+
+#detailTitle::after {
+    right: 20px;
+}
+
+#detailContent {
+    line-height: 1.8;
+    color: #d4c9a8;
+    position: relative;
+}
+
+#detailContent p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    text-align: center;
+    font-style: italic;
+    padding: 0 20px;
+    position: relative;
+}
+
+#detailContent p::before,
+#detailContent p::after {
+    content: '"';
+    color: #e2c87a;
+    font-size: 1.5rem;
+    font-family: 'Cinzel', serif;
+}
+
+#detailContent .tarot-symbol {
+    animation: pulse 2s infinite ease-in-out;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 旧日层次样式 */
+.old-ones {
+    margin-top: 30px;
+    padding: 30px;
+    background: rgba(19, 19, 28, 0.7);
+    border-left: 4px solid #e2c87a;
+    position: relative;
+    box-shadow: 0 0 20px rgba(226, 200, 122, 0.2) inset;
+    animation: glow 3s infinite alternate;
+}
+
+.old-ones::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://i.imgur.com/8XZyuNs.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.05;
+    z-index: -1;
+    filter: blur(2px);
+}
+
+.old-ones h4 {
+    margin-bottom: 15px;
+    color: #e2c87a;
+    font-weight: 600;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(226, 200, 122, 0.5);
+}
+
+.old-ones p {
+    color: #d4c9a8;
+    font-weight: 500;
+    font-size: 1.2rem;
+    text-align: center;
+    font-style: italic;
+    letter-spacing: 1px;
+}
+
+/* 序列步骤条样式 */
+.sequence-steps {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.steps-container {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+}
+
+.step-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.step-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(20, 20, 30, 0.8);
+    border: 2px solid #e2c87a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #e2c87a;
+    margin-right: 15px;
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(226, 200, 122, 0.3);
+}
+
+.step-name {
+    font-weight: bold;
+    color: #d4c9a8;
+    transition: all 0.3s ease;
+}
+
+.step-line {
+    position: absolute;
+    top: 40px;
+    left: 20px;
+    width: 2px;
+    height: 30px;
+    background: linear-gradient(to bottom, #e2c87a, rgba(226, 200, 122, 0.3));
+}
+
+.step-item:hover .step-circle {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(226, 200, 122, 0.5);
+}
+
+.step-item:hover .step-name {
+    color: #e2c87a;
+    text-shadow: 0 0 5px rgba(226, 200, 122, 0.5);
+}
+
+.step-item.active .step-circle {
+    background: rgba(226, 200, 122, 0.2);
+    border-color: #e2c87a;
+    box-shadow: 0 0 20px rgba(226, 200, 122, 0.7);
+}
+
+.step-item.active .step-name {
+    color: #e2c87a;
+    text-shadow: 0 0 8px rgba(226, 200, 122, 0.7);
+}
+
+/* 魔药配方展示区域 */
+.potion-display-area {
+    width: 65%;
+    background: rgba(20, 20, 30, 0.7);
+    border: 1px solid rgba(226, 200, 122, 0.5);
+    border-radius: 5px;
+    padding: 20px;
+    min-height: 300px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(226, 200, 122, 0.2);
+}
+
+/* 魔药配方与能力样式 */
+.potions-container {
+    margin-top: 30px;
+}
+
+.potion-detail {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.5s ease;
+}
+
+.potion-detail.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.potion-detail h3 {
+    color: #e2c87a;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 1.5rem;
+    text-shadow: 0 0 10px rgba(226, 200, 122, 0.5);
+    border-bottom: 1px solid rgba(226, 200, 122, 0.3);
+    padding-bottom: 10px;
+}
+
+.potion-recipe, .potion-ability {
+    margin-bottom: 20px;
+    background: rgba(15, 15, 25, 0.6);
+    padding: 15px;
+    border-radius: 5px;
+    border-left: 3px solid #e2c87a;
+}
+
+.potion-recipe h5, .potion-ability h5 {
+    color: #e2c87a;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.no-potion {
+    color: #8a7339;
+    font-style: italic;
+    text-align: center;
+    margin: 20px 0;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* 魔药配方样式 */
+.potions-list {
+    margin-top: 40px;
+    position: relative;
+}
+
+.potions-list h4 {
+    margin-bottom: 20px;
+    color: #e2c87a;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.potions-list h4::before,
+.potions-list h4::after {
+    content: '✦';
+    color: #634e2c;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.potions-list h4::before {
+    left: 30%;
+}
+
+.potions-list h4::after {
+    right: 30%;
+}
+
+.potions-list ul {
+    list-style-type: none;
+}
+
+.potions-list li {
+    padding: 20px;
+    margin-bottom: 20px;
+    background: rgba(19, 19, 28, 0.6);
+    border-left: 3px solid #634e2c;
+    position: relative;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.potions-list li::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at top left, rgba(226, 200, 122, 0.1) 0%, rgba(13, 13, 19, 0) 70%);
+    z-index: -1;
+}
+
+.potions-list li:hover {
+    transform: translateY(-5px);
+    border-left-color: #e2c87a;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.potions-list li strong {
+    display: block;
+    margin-bottom: 12px;
+    color: #e2c87a;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.potions-list li strong::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 1px;
+    background: #634e2c;
+}
+
+.potions-list li p {
+    color: #d4c9a8;
+    font-style: italic;
+    line-height: 1.6;
+    text-align: center;
+}
+
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 5px rgba(226, 200, 122, 0.2) inset;
+    }
+    100% {
+        box-shadow: 0 0 20px rgba(226, 200, 122, 0.4) inset;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+}
+
+/* 神秘效果动画 */
+.path-details {
+    background: linear-gradient(to bottom, rgba(13, 13, 19, 0.95), rgba(19, 19, 28, 0.95));
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.8), 0 0 60px rgba(226, 200, 122, 0.2) inset;
+    border: 1px solid rgba(226, 200, 122, 0.3);
+    transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.path-details::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(226, 200, 122, 0.05) 0%, rgba(13, 13, 19, 0) 70%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.path-description {
+    font-style: italic;
+    text-align: center;
+    color: #d4c9a8;
+    margin: 20px 0;
+    padding: 0 20px;
+    position: relative;
+    line-height: 1.8;
+}
+
+.path-description::before,
+.path-description::after {
+    content: '"';
+    font-size: 2rem;
+    color: rgba(226, 200, 122, 0.4);
+    position: absolute;
+}
+
+.path-description::before {
+    top: -10px;
+    left: 0;
+}
+
+.path-description::after {
+    bottom: -20px;
+    right: 0;
+}
+
+.mystical-seal {
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+    width: 60px;
+    height: 60px;
+    background-image: url('https://i.imgur.com/JZGPcDz.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.2;
+    transform: rotate(15deg);
+}
+
+.tarot-symbol {
+    position: relative;
+}
+
+.tarot-symbol::before,
+.tarot-symbol::after {
+    content: '✧';
+    position: absolute;
+    top: 50%;
+    font-size: 1.5rem;
+    color: rgba(226, 200, 122, 0.6);
+    transform: translateY(-50%);
+}
+
+.tarot-symbol::before {
+    left: 30%;
+}
+
+.tarot-symbol::after {
+    right: 30%;
+}
+
+.sequence-item, .potion-item {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.old-ones.reveal {
+    animation: revealGlow 1s forwards;
+}
+
+@keyframes revealGlow {
+    from {
+        opacity: 0.7;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        box-shadow: 0 0 30px rgba(226, 200, 122, 0.3) inset;
+    }
+}
+
+/* 页脚样式 */
+footer {
+    text-align: center;
+    padding: 30px 0;
+    color: #634e2c;
+    font-size: 0.9rem;
+    border-top: 1px solid #634e2c;
+    margin-top: 40px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .tarot-container {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 20px;
+    }
+    
+    .tarot-card {
+        height: 280px;
+    }
+    
+    header h1 {
+        font-size: 2.5rem;
+    }
+    
+    header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .path-details {
+        width: 95%;
+        padding: 30px;
+    }
+    
+    #detailTitle {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .tarot-container {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 15px;
+    }
+    
+    .tarot-card {
+        height: 240px;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    header h2 {
+        font-size: 1.2rem;
+    }
+    
+    .tarot-title {
+        font-size: 1.2rem;
+    }
+    
+    .tarot-symbol {
+        font-size: 2.5rem;
+    }
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 0.8s ease forwards;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.float {
+    animation: float 3s ease-in-out infinite;
+}
